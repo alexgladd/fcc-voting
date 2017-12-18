@@ -27,11 +27,10 @@ class App extends React.Component {
     const { user, logout, history } = this.props;
 
     return (
-      <div className="App">
+      <div>
         <Header user={user} onLogout={() => { logout(); history.push('/'); }} />
 
-        <hr/>
-
+        <div className="App">
         <Switch>
           { // home route
             user ?
@@ -50,6 +49,7 @@ class App extends React.Component {
           { /* no match route */ }
           <Route component={FourOhFour} />
         </Switch>
+        </div>
       </div>
     );
   }

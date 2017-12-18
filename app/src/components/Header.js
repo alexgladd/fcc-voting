@@ -8,12 +8,12 @@ class Header extends React.Component {
     const { user, onLogout } = this.props;
 
     return (
-      <header>
-        <div className="HeaderLeft">
-          <Link to="/">Home</Link>
-          { user && <span> · <Link to="/profile">Profile</Link></span> }
+      <header className="Header">
+        <div className="Brand">
+          <Link to="/">Pollster</Link>
+          { /*user && <span> · <Link to="/profile">Profile</Link></span>*/ }
         </div>
-        <div className="HeaderRight">
+        <div className="Auth">
           { user ?
             <button onClick={() => onLogout()}>Logout</button> :
             <Link to="/login">Login</Link>

@@ -1,12 +1,28 @@
 /* header component styles */
 
-.HeaderLeft {
-  width: 50%;
-  float: left;
+.Header {
+  display: flex;
+  width: 100vw;
+  box-shadow: 0 2px 8px #ccc;
+  background-color: #2364AA;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  align-items: baseline;
 }
 
-.HeaderRight {
-  width: 50%;
-  margin-left: 50%;
+.Header .Brand {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.Header .Auth {
+  flex-grow: 1;
+  font-size: 1.25rem;
   text-align: right;
+}
+
+.Header a, .Header a:visited {
+  color: #fff;
+  text-decoration: none;
 }
