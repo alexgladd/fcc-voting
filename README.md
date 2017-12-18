@@ -1,4 +1,3 @@
-# MERN Starter for Heroku
+# Voting App
 
-This repo serves as a starting point for a basic full stack MongoDB, Express,
-React, and Node.js (MERN) app.
+Create as part of the [freeCodeCamp](https://freecodecamp.com/) curriculum.
