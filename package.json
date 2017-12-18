@@ -1,0 +1,27 @@
+{
+  "name": "fcc-voting",
+  "version": "1.0.0",
+  "description": "Full-stack voting app build for freeCodeCamp",
+  "author": "Alex Gladd",
+  "license": "MIT",
+  "scripts": {
+    "server": "node server.js",
+    "client": "cd app && npm start",
+    "start": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.12.0",
+    "morgan": "^1.9.0",
+    "node-fetch": "^1.7.3"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "dotenv": "^4.0.0"
+  },
+  "engines": {
+    "node": "8.x"
+  }
+}
