@@ -5,17 +5,15 @@ const { Poll, User } = require('../models');
 exports.getAllPolls = async (req, res) => {
   try {
     const polls = await Poll.find().sort({ createdAt: 'desc' }).exec();
-    const pollsResponse = polls.map(poll => {
-      return {
-        id: poll.id,
-        subject: poll.subject,
-        voteCount: poll.votes.length,
-        ownerName: poll.owner.name,
-        createdAt: poll.createdAt
-      };
-    });
+    const response = polls.map(poll => ({
+      id: poll.id,
+      subject: poll.subject,
+      voteCount: poll.votes.length,
+      ownerName: poll.owner.name,
+      createdAt: poll.createdAt
+    }));
 
-    res.json(pollsResponse);
+    res.json(response);
   } catch(err) {
     console.error('Error retrieving all polls', err);
     res.status(500).json({ errorMessage: 'Could not retrieve all polls' });
@@ -40,6 +38,20 @@ exports.createVoteOnPoll = async (req, res) => {
   } catch(err) {
     console.error('Error creating new vote on poll', err);
     res.status(500).json({ errorMessage: 'Could not create new vote on poll' });
+  }
+}
+
+exports.getUserPolls = async (req, res) => {
+  const { authUser } = req;
+
+  try {
+    const polls = await Poll.find({ 'owner.id': authUser.id }).sort({ updatedAt: 'desc' }).exec();
+    const response = polls.map(poll => poll.toPollResponse());
+
+    res.json(response);
+  } catch(err) {
+    console.error('Error retrieving all polls for user', err);
+    res.status(500).json({ errorMessage: 'Could not retrieve user polls' });
   }
 }
 

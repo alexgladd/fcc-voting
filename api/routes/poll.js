@@ -16,6 +16,10 @@ const setupPollRoutes = (router) => {
     .all(poll.lookupPoll)
     .post(PollController.createVoteOnPoll);
 
+  router.route('/user/:userId/polls')
+    .all(auth.authenticateUser, auth.authorizeUser)
+    .get(PollController.getUserPolls);
+
   router.route('/user/:userId/poll')
     .all(auth.authenticateUser, auth.authorizeUser)
     .post(PollController.createNewPoll);
