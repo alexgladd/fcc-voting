@@ -1,8 +1,26 @@
 /*
 app component styles
 https://coolors.co/2364aa-3da5d9-73bfb8-fec601-ea7317
+https://coolors.co/2364aa-3da5d9-ef476f-ffd166-06d6a0
 */
 
 .App {
+}
+
+.AppContent {
   margin: 0 5vw 5vh 5vw;
+}
+
+.Footer {
+  color: #ddd;
+  position: absolute;
+  bottom: 0px;
+  width: 100vw;
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.Footer a, .Footer a:hover, .Footer a:visited, .Footer a:focus {
+  color: #fff;
+  text-decoration: none;
 }

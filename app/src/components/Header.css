@@ -3,7 +3,7 @@
 .Header {
   display: flex;
   width: 100vw;
-  box-shadow: 0 2px 8px #ccc;
+  box-shadow: 0 2px 8px #333;
   background-color: #2364AA;
   padding: 0.5rem 1rem;
   box-sizing: border-box;
@@ -25,4 +25,7 @@
 .Header a, .Header a:visited {
   color: #fff;
   text-decoration: none;
+}
+.Header a:hover, .Header a:focus {
+  color: #ddd;
 }

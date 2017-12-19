@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import LoginButton from './LoginButton';
 import { oauthAuthenticate } from '../actions/user';
 import oauth from '../util/oauth';
+import './Login.css';
 
 class Login extends React.Component {
   constructor(props) {
@@ -53,9 +54,10 @@ class Login extends React.Component {
       return <Redirect to="/" />;
     } else {
       return (
-        <div>
-          <h2>Login</h2>
-          <p>Click below to log in with your preferred network!</p>
+        <div className="Login">
+          <h2>Login to Pollster</h2>
+          <p><strong>Only registered users can create and share new polls</strong></p>
+          <p>Click below to log in or sign up with your Github account!</p>
           { this.renderLoginButtons() }
         </div>
       );

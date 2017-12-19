@@ -1,5 +1,7 @@
 import React from 'react';
 import { Switch, Route, Link, withRouter } from 'react-router-dom';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import { connect } from 'react-redux';
 import { logoutUser } from '../actions/user';
 import Header from '../components/Header';
@@ -27,10 +29,10 @@ class App extends React.Component {
     const { user, logout, history } = this.props;
 
     return (
-      <div>
+      <div className="App">
         <Header user={user} onLogout={() => { logout(); history.push('/'); }} />
 
-        <div className="App">
+        <div className="AppContent">
         <Switch>
           { // home route
             user ?
@@ -50,6 +52,10 @@ class App extends React.Component {
           <Route component={FourOhFour} />
         </Switch>
         </div>
+
+        <footer className="Footer">
+          Created by <a href="https://github.com/alexgladd/fcc-voting">Alex Gladd <FontAwesomeIcon icon={faGithub} /></a>
+        </footer>
       </div>
     );
   }
