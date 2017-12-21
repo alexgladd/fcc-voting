@@ -5,17 +5,11 @@ import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import { connect } from 'react-redux';
 import { logoutUser } from '../actions/user';
 import Header from '../components/Header';
+import Home from './Home';
 import AuthHome from '../components/AuthHome';
 import Login from '../components/Login';
 import Profile from '../components/Profile';
 import './App.css';
-
-const PublicHome = () => (
-  <div>
-    <h2>Unauthenticated Home</h2>
-    <p>This is the public homepage that shows up for unauthenticated users</p>
-  </div>
-)
 
 const FourOhFour = () => (
   <div>
@@ -34,11 +28,7 @@ class App extends React.Component {
 
         <div className="AppContent">
         <Switch>
-          { // home route
-            user ?
-            <Route exact path="/" render={props => (<AuthHome user={user} {...props} />)} /> :
-            <Route exact path="/" component={PublicHome} />
-          }
+          <Route exact path="/" component={Home} />
 
           { /* login and oauth routes */ }
           <Route path="/login/:network?" component={Login} />

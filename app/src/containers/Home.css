@@ -1,0 +1,16 @@
+/*
+Home container styles
+*/
+
+.Hero {
+  color: #fff;
+  background-color: #73BFB8;
+  border: 1px solid #73BFB8;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 5vh;
+}
+
+.Polls {
+  text-align: center;
+}
