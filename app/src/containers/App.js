@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../actions/user';
 import Header from '../components/Header';
 import Home from './Home';
-import AuthHome from '../components/AuthHome';
+// import AuthHome from '../components/AuthHome';
 import Login from '../components/Login';
 import Profile from '../components/Profile';
 import './App.css';

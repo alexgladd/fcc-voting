@@ -18,6 +18,11 @@ const oauthAuthenticate = async (network, code) => {
   return await apiRequest(`/api/authenticate/${network}`, init);
 }
 
+// retrieve all polls
+const getAllPolls = async () => {
+  return await apiRequest('/api/polls', buildInit());
+}
+
 // example api endpoints (remove)
 const getAuthenticatedExample = async (token) => {
   return await apiRequest('/api/example', buildAuthInit(token));
@@ -31,6 +36,7 @@ const getAuthorizedExample = async (user) => {
 export default {
   getServerState,
   oauthAuthenticate,
+  getAllPolls,
   getAuthenticatedExample,
   getAuthorizedExample
 };

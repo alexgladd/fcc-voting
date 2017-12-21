@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { requestAllPolls } from '../actions/polls';
 import './Home.css';
 
 class Home extends React.Component {
+  componentDidMount() {
+    this.props.getAllPolls();
+  }
+
   renderHero() {
     return (
       <div className="Hero">
@@ -23,7 +27,7 @@ class Home extends React.Component {
         { !user && this.renderHero() }
 
         <div className="Polls">
-          This is the new home container
+          This is the polls container
         </div>
       </div>
     );
@@ -31,7 +35,12 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  polls: state.polls
 });
 
-export default connect(mapStateToProps, null)(Home);
+const mapDispatchToProps = (dispatch) => ({
+  getAllPolls() { dispatch(requestAllPolls()); }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
