@@ -1,33 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { requestAllPolls } from '../actions/polls';
+import PollSummary from '../components/PollSummary';
 import './Home.css';
+
+const Hero = () => (
+  <div className="Hero">
+    <h1>Welcome to Pollster!</h1>
+    <p>Pollster is a quick and easy voting app. Create and share polls with
+    friends, family, and followers. Log in to get started creating new polls,
+    and check out the polls below for inspiration!</p>
+  </div>
+);
 
 class Home extends React.Component {
   componentDidMount() {
     this.props.getAllPolls();
   }
 
-  renderHero() {
-    return (
-      <div className="Hero">
-        <h1>Welcome to Pollster!</h1>
-        <p>Pollster is a quick and easy voting app. Create and share polls with
-        friends, family, and followers. Log in to get started creating new polls,
-        and check out the polls below for inspiration!</p>
-      </div>
-    );
-  }
-
   render() {
-    const { user } = this.props;
+    const { user, polls } = this.props;
 
     return (
       <div>
-        { !user && this.renderHero() }
+        { !user && <Hero /> }
 
         <div className="Polls">
-          This is the polls container
+          { polls.map((poll, idx) => <PollSummary poll={poll} key={idx} />) }
         </div>
       </div>
     );

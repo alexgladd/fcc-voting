@@ -1,0 +1,41 @@
+/*
+PollSummary component styles
+*/
+
+.PollSummary {
+  display: grid;
+  grid-template-columns: auto fit-content;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'subject subject'
+    'created   votes';
+  grid-gap: 6px;
+  color: #fff;
+  border-radius: 6px;
+  padding: 1rem;
+}
+.PollSummary.Red {
+  background-color: #EF476F;
+  border: 1px solid #EF476F;
+}
+.PollSummary.Yellow {
+  background-color: #FFD166;
+  border: 1px solid #FFD166;
+}
+.PollSummary.Green {
+  background-color: #06D6A0;
+  border: 1px solid #06D6A0;
+}
+
+.PollSummary .Subject {
+  grid-area: subject;
+}
+
+.PollSummary .Created {
+  grid-area: created;
+}
+
+.PollSummary .Votes {
+  grid-area: votes;
+  text-align: right;
+}

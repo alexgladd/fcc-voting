@@ -12,5 +12,12 @@ Home container styles
 }
 
 .Polls {
-  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 24px;
+}
+
+.Polls a, .Polls a:visited, .Polls a:hover, .Polls a:focus {
+  text-decoration: none;
 }
