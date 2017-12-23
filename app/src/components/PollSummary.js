@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faCheckSquare } from '@fortawesome/fontawesome-free-solid';
+import { faQuestionCircle, faCheckSquare, faClock } from '@fortawesome/fontawesome-free-solid';
 import './PollSummary.css';
 
 const pollBgs = [ 'Red', 'Yellow', 'Green' ];
@@ -18,12 +18,12 @@ const PollSummary = ({ poll }) => {
     <Link to={`/poll/${poll.id}`}>
       <div className={classes}>
         <div className="Subject">
-          <h3>{ poll.subject }</h3>
+          <h3><FontAwesomeIcon icon={faQuestionCircle} /> { poll.subject }</h3>
         </div>
         <div className="Created" title={timeStr}>
-          <small>Started { timeAgo } by { poll.ownerName }</small>
+          <FontAwesomeIcon icon={faClock} /> <small>Started { timeAgo } by { poll.ownerName }</small>
         </div>
-        <div className="Votes">
+        <div className="Votes" title="Vote count">
           <FontAwesomeIcon icon={faCheckSquare} /> { poll.voteCount }
         </div>
       </div>

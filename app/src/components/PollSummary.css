@@ -11,20 +11,22 @@ PollSummary component styles
     'created   votes';
   grid-gap: 6px;
   color: #fff;
+  border-width: 1px;
+  border-style: solid;
   border-radius: 6px;
   padding: 1rem;
 }
 .PollSummary.Red {
   background-color: #EF476F;
-  border: 1px solid #EF476F;
+  border-color: #EF476F;
 }
 .PollSummary.Yellow {
   background-color: #FFD166;
-  border: 1px solid #FFD166;
+  border-color: #FFD166;
 }
 .PollSummary.Green {
   background-color: #06D6A0;
-  border: 1px solid #06D6A0;
+  border-color: #06D6A0;
 }
 
 .PollSummary .Subject {
@@ -38,4 +40,8 @@ PollSummary component styles
 .PollSummary .Votes {
   grid-area: votes;
   text-align: right;
+}
+
+.PollSummary h3 {
+  margin-top: 0.5em;
 }
