@@ -21,7 +21,7 @@ const PollSummary = ({ poll }) => {
           <h3><FontAwesomeIcon icon={faQuestionCircle} /> { poll.subject }</h3>
         </div>
         <div className="Created" title={timeStr}>
-          <FontAwesomeIcon icon={faClock} /> <small>Started { timeAgo } by { poll.ownerName }</small>
+          <small><FontAwesomeIcon icon={faClock} /> Started { timeAgo }</small>
         </div>
         <div className="Votes" title="Vote count">
           <FontAwesomeIcon icon={faCheckSquare} /> { poll.voteCount }

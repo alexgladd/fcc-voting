@@ -46,7 +46,7 @@ class App extends React.Component {
         </div>
 
         <footer className="Footer">
-          Created by <a href="https://github.com/alexgladd/fcc-voting">Alex Gladd <FontAwesomeIcon icon={faGithub} /></a>
+          Pollster created by <a href="https://github.com/alexgladd/fcc-voting">Alex Gladd <FontAwesomeIcon icon={faGithub} /></a>
         </footer>
       </div>
     );
