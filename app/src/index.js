@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import reducers from './reducers';
 import { requestServerState } from './actions/serverstate';
 import { loginUser } from './actions/user';
+import { loadAllVotes } from './actions/votes';
 
 import localstore from './util/localstore';
 
@@ -25,6 +26,11 @@ const store = createStore(
 const localUser = localstore.getUserInfo();
 if (localUser) {
   store.dispatch(loginUser(localUser));
+}
+
+const userVotes = localstore.getUserVotes();
+if (userVotes) {
+  store.dispatch(loadAllVotes(userVotes));
 }
 
 // get current server state

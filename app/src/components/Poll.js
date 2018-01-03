@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { submitVote } from '../actions/votes';
 import api from '../util/api';
 import moment from 'moment';
 import Button from './Button';
@@ -14,35 +16,39 @@ class Poll extends React.Component {
     };
 
     this.selectOption = this.selectOption.bind(this);
-    this.submitVote = this.submitVote.bind(this);
+    this.handleVote = this.handleVote.bind(this);
   }
 
   selectOption(optionIndex) {
     this.setState({ selectedOption: optionIndex });
   }
 
-  submitVote() {
+  handleVote() {
     const { poll, selectedOption } = this.state;
     const vote = { optionId: poll.options[selectedOption].id };
 
-    api.voteOnPoll(poll, vote).then(poll => {
-      this.setState({ poll });
-    }).catch(err => {
-      console.error('Error voting on poll', err);
-    });
+    this.props.submitVote(poll, vote);
   }
 
   componentDidMount() {
-    const { match } = this.props;
-    // request poll data
-    api.getPollDetails(match.params.pollId).then(poll => {
-      this.setState({ poll });
-    }).catch(err => {
-      console.error('Error retrieving poll details', err);
-    });
+    const { votes, match, location, history } = this.props;
+    const pollId = match.params.pollId;
+
+    if (votes[pollId]) {
+      // already voted on this poll
+      history.push(`${location.pathname}/results`);
+    } else {
+      // request poll data
+      api.getPollDetails(match.params.pollId).then(poll => {
+        this.setState({ poll });
+      }).catch(err => {
+        console.error('Error retrieving poll details', err);
+      });
+    }
   }
 
   render() {
+    // TODO need to redirect after a user submits a vote
     const { poll, selectedOption } = this.state;
     const timeAgo = poll ? moment(poll.createdAt).fromNow() : null;
 
@@ -59,7 +65,7 @@ class Poll extends React.Component {
           }
         </ul>
         <div className="Btn">
-          <Button text="Vote" type="Primary" onClick={this.submitVote}
+          <Button text="Vote" type="Primary" onClick={this.handleVote}
             disabled={selectedOption === null} />
         </div>
       </div>
@@ -67,4 +73,12 @@ class Poll extends React.Component {
   }
 }
 
-export default Poll;
+const mapStateToProps = (state) => ({
+  votes: state.votes
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  submitVote(poll, vote) { dispatch(submitVote(poll.id, vote)) }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Poll);

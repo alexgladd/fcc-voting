@@ -29,13 +29,13 @@ const getPollDetails = async (pollId) => {
 }
 
 // vote on poll
-const voteOnPoll = async (poll, vote) => {
+const voteOnPoll = async (pollId, vote) => {
   const init = buildInit({
     method: 'POST',
     body: JSON.stringify(vote)
   });
 
-  return await apiRequest(`/api/poll/${poll.id}/vote`, init);
+  return await apiRequest(`/api/poll/${pollId}/vote`, init);
 }
 
 // example api endpoints (remove)
