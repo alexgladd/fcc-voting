@@ -34,5 +34,7 @@ const getUserVotes = () => {
 export default {
   setUserInfo,
   clearUserInfo,
-  getUserInfo
+  getUserInfo,
+  setUserVotes,
+  getUserVotes
 };
