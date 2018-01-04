@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import { submitVote } from '../actions/votes';
 import api from '../util/api';
 import moment from 'moment';
@@ -12,7 +13,8 @@ class Poll extends React.Component {
 
     this.state = {
       poll: null,
-      selectedOption: null
+      selectedOption: null,
+      voted: false
     };
 
     this.selectOption = this.selectOption.bind(this);
@@ -28,15 +30,16 @@ class Poll extends React.Component {
     const vote = { optionId: poll.options[selectedOption].id };
 
     this.props.submitVote(poll, vote);
+    this.setState({ voted: true });
   }
 
   componentDidMount() {
-    const { votes, match, location, history } = this.props;
+    const { votes, match } = this.props;
     const pollId = match.params.pollId;
 
     if (votes[pollId]) {
       // already voted on this poll
-      history.push(`${location.pathname}/results`);
+      this.setState({ voted: true });
     } else {
       // request poll data
       api.getPollDetails(match.params.pollId).then(poll => {
@@ -48,28 +51,32 @@ class Poll extends React.Component {
   }
 
   render() {
-    // TODO need to redirect after a user submits a vote
-    const { poll, selectedOption } = this.state;
-    const timeAgo = poll ? moment(poll.createdAt).fromNow() : null;
+    const { poll, selectedOption, voted } = this.state;
 
-    return (
-      <div className="Poll">
-        <h1>{ poll ? poll.subject : 'Loading...' }</h1>
-        <h3>{ poll && `Started by ${poll.owner.name} ${timeAgo}` }</h3>
-        <ul>
-          { poll && poll.options.map((opt, idx) => {
-              const classes = ( idx === selectedOption) ? 'Option Selected' : 'Option';
-              const select = () => { this.selectOption(idx) };
-              return <li className={classes} onClick={select} key={idx}>{ opt.value }</li>;
-            })
-          }
-        </ul>
-        <div className="Btn">
-          <Button text="Vote" type="Primary" onClick={this.handleVote}
-            disabled={selectedOption === null} />
+    if (voted) {
+      const { location } = this.props;
+      return <Redirect to={`${location.pathname}/results`} />;
+    } else {
+      const timeAgo = poll ? moment(poll.createdAt).fromNow() : null;
+      return (
+        <div className="Poll">
+          <h1>{ poll ? poll.subject : 'Loading...' }</h1>
+          <h3>{ poll && `Started by ${poll.owner.name} ${timeAgo}` }</h3>
+          <ul>
+            { poll && poll.options.map((opt, idx) => {
+                const classes = ( idx === selectedOption) ? 'Option Selected' : 'Option';
+                const select = () => { this.selectOption(idx) };
+                return <li className={classes} onClick={select} key={idx}>{ opt.value }</li>;
+              })
+            }
+          </ul>
+          <div className="Btn">
+            <Button text="Vote" type="Primary" onClick={this.handleVote}
+              disabled={selectedOption === null} />
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

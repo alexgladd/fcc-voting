@@ -30,6 +30,7 @@ class App extends React.Component {
         <div className="AppContent">
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/poll/:pollId/results" component={FourOhFour} />
           <Route path="/poll/:pollId" component={Poll} />
 
           { /* login and oauth routes */ }
