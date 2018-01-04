@@ -10,6 +10,7 @@ import Home from './Home';
 import Login from '../components/Login';
 import Profile from '../components/Profile';
 import Poll from '../components/Poll';
+import PollResults from './PollResults';
 import './App.css';
 
 const FourOhFour = () => (
@@ -30,7 +31,7 @@ class App extends React.Component {
         <div className="AppContent">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/poll/:pollId/results" component={FourOhFour} />
+          <Route path="/poll/:pollId/results" component={PollResults} />
           <Route path="/poll/:pollId" component={Poll} />
 
           { /* login and oauth routes */ }
