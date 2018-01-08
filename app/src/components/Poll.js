@@ -30,7 +30,6 @@ class Poll extends React.Component {
     const vote = { optionId: poll.options[selectedOption].id };
 
     this.props.submitVote(poll, vote);
-    this.setState({ voted: true });
   }
 
   componentDidMount() {
@@ -47,6 +46,18 @@ class Poll extends React.Component {
       }).catch(err => {
         console.error('Error retrieving poll details', err);
       });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { votes, match } = this.props;
+    const pollId = match.params.pollId;
+
+    if (Object.keys(prevProps.votes).length !== Object.keys(votes).length) {
+      // votes changed
+      if (votes[pollId]) {
+        this.setState({ voted: true });
+      }
     }
   }
 
