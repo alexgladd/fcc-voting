@@ -1,3 +1,20 @@
 /*
 PollResults container styles
 */
+
+.PollResults {
+  color: #fff;
+  width: 100%;
+}
+
+.PollResults .Subject {
+  /* margin-bottom: 24px; */
+}
+
+.PollResults .Results {
+  grid-area: results;
+  background-color: #73BFB8;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  padding: 1em;
+}
