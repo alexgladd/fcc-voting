@@ -87,14 +87,6 @@ exports.updatePoll = async (req, res) => {
   let { poll } = req;
   const { body } = req;
 
-  // const options = body.options.map(option => {
-  //   if (option.id) {
-  //     return { _id: option.id, value: option.value };
-  //   } else {
-  //     return { value: option.value };
-  //   }
-  // });
-
   try {
     body.newOptions.forEach(opt => {
       poll.options.push(opt);

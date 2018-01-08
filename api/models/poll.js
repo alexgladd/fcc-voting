@@ -8,13 +8,6 @@ const pollOptionSchema = new mongoose.Schema({
   votes: { type: Number, require: true, default: 0 }
 });
 
-// const pollVoteSchema = new mongoose.Schema({
-//   optionId: { type: ObjectId, required: true }
-// }, {
-//   timestamps: true,
-//   _id: false
-// });
-
 const pollOwnerSchema = new mongoose.Schema({
   id:   { type: ObjectId, required: true, get: i => i.toString() },
   name: { type: String, required: true }
@@ -33,7 +26,6 @@ const pollSchema = new mongoose.Schema({
 
 pollSchema.methods.toPollResponse = function() {
   const optionsResponse = this.options.map(option => ({ id: option.id, value: option.value, votes: option.votes }));
-  // const votesResponse = this.votes.map(vote => ({ optionId: vote.optionId, createdAt: vote.createdAt }));
 
   return {
     id: this.id,
