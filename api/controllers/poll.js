@@ -8,8 +8,7 @@ exports.getAllPolls = async (req, res) => {
     const response = polls.map(poll => ({
       id: poll.id,
       subject: poll.subject,
-      voteCount: poll.votes.length,
-      ownerName: poll.owner.name,
+      voteCount: poll.voteCount,
       createdAt: poll.createdAt
     }));
 
@@ -28,16 +27,27 @@ exports.getPoll = (req, res) => {
 
 exports.createVoteOnPoll = async (req, res) => {
   let { poll } = req;
-  const { body } = req;
+  const { optionId } = req.body;
+  const findOption = (option) => {
+    return option.id === optionId;
+  };
 
-  try {
-    poll.votes.push({ ...body });
-    poll = await poll.save();
+  const idx = poll.options.findIndex(findOption);
+  if (idx >= 0) {
+    // update the poll
+    try {
+      poll.options[idx].votes = poll.options[idx].votes + 1;
+      poll.voteCount = poll.voteCount + 1;
+      poll = await poll.save();
 
-    res.status(201).json(poll.toPollResponse());
-  } catch(err) {
-    console.error('Error creating new vote on poll', err);
-    res.status(500).json({ errorMessage: 'Could not create new vote on poll' });
+      res.status(201).json(poll.toPollResponse());
+    } catch(err) {
+      console.error('Error creating new vote on poll', err);
+      res.status(500).json({ errorMessage: 'Could not create new vote on poll' });
+    }
+  } else {
+    // not a valid option
+    res.status(400).json({ errorMessage: 'Unknown poll option ID' });
   }
 }
 
