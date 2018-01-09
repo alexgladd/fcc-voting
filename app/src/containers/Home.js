@@ -13,6 +13,14 @@ const Hero = () => (
   </div>
 );
 
+const AuthHero = () => (
+  <div className="Hero">
+    <h1>Welcome back to Pollster!</h1>
+    <p>Use the buttons above to create a new poll or view your existing polls.
+    Check out polls from other users below!</p>
+  </div>
+);
+
 class Home extends React.Component {
   componentDidMount() {
     this.props.getAllPolls();
@@ -23,7 +31,7 @@ class Home extends React.Component {
 
     return (
       <div>
-        { !user && <Hero /> }
+        { user ? <AuthHero /> : <Hero /> }
 
         <div className="Polls">
           { polls.map((poll, idx) => <PollSummary poll={poll} key={idx} />) }
