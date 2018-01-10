@@ -22,6 +22,10 @@
   text-align: right;
 }
 
+.Header .Auth .Button {
+  margin-left: 12px;
+}
+
 .Header a, .Header a:visited {
   color: #fff;
   text-decoration: none;

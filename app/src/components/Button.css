@@ -16,12 +16,22 @@ Button component sytles
   border-color: #fff;
   background-color: rgba(255, 255, 255, 0.35);
 }
+.Button:focus {
+  outline: none;
+}
 
 .Button.Primary {
   background-color: #73BFB8;
 }
 .Button.Primary:hover {
   background-color: #8CCAC4;
+}
+
+.Button.Warning {
+  background-color: #EA7317;
+}
+.Button.Warning:hover {
+  background-color: #ED8C41;
 }
 
 .Button:disabled {

@@ -26,7 +26,10 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <Header user={user} onLogout={() => { logout(); history.push('/'); }} />
+        <Header user={user}
+          onNewPoll={() => { history.push('/poll/new'); }}
+          onLogin={() => { history.push('/login'); }}
+          onLogout={() => { logout(); history.push('/'); }} />
 
         <div className="AppContent">
         <Switch>
