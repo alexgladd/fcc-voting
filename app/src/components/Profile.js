@@ -7,7 +7,7 @@ class Profile extends React.Component {
     super(props);
 
     this.state = {
-      message: 'Loading profile message...'
+      polls: []
     };
   }
 
@@ -23,16 +23,14 @@ class Profile extends React.Component {
 
   render () {
     const { user } = this.props;
-    const { message } = this.state;
 
     return (
       <div>
-        <h2>Profile</h2>
+        <h1>Your Polls</h1>
         <ul>
           <li><strong>User name:</strong> {user.name}</li>
           <li><strong>Network:</strong> {user.github ? 'Github' : 'Unknown'}</li>
         </ul>
-        <p>Profile message: <code>{message}</code></p>
       </div>
     );
   }
