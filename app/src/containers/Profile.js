@@ -24,7 +24,6 @@ class Profile extends React.Component {
   }
 
   render () {
-    const { user } = this.props;
     const { polls } = this.state;
 
     return (
