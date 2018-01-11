@@ -38,6 +38,11 @@ const voteOnPoll = async (pollId, vote) => {
   return await apiRequest(`/api/poll/${pollId}/vote`, init);
 }
 
+// retrieve user's polls
+const getUserPolls = async (user) => {
+  return await apiRequest(`/api/user/${user.id}/polls`, buildAuthInit(user.token));
+}
+
 // example api endpoints (remove)
 const getAuthenticatedExample = async (token) => {
   return await apiRequest('/api/example', buildAuthInit(token));
@@ -52,6 +57,7 @@ export default {
   getServerState,
   oauthAuthenticate,
   getAllPolls,
+  getUserPolls,
   getPollDetails,
   voteOnPoll,
   getAuthenticatedExample,
