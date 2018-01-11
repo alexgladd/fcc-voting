@@ -7,7 +7,7 @@ import { logoutUser } from '../actions/user';
 import Header from '../components/Header';
 import Home from './Home';
 import Login from '../components/Login';
-import Profile from '../components/Profile';
+import Profile from './Profile';
 import Poll from '../components/Poll';
 import PollResults from './PollResults';
 import './App.css';
