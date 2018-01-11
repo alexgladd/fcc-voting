@@ -10,6 +10,13 @@ Home container styles
   padding: 1rem;
   margin-bottom: 5vh;
 }
+.Hero a, .Hero a:visited {
+  color: #2364AA;
+  text-decoration: none;
+}
+.Hero a:hover {
+  text-decoration: underline;
+}
 
 .Polls {
   display: grid;
