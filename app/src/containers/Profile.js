@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import api from '../util/api';
 import pluralize from 'pluralize';
+import UserPoll from '../components/UserPoll';
 import './Profile.css';
 
 class Profile extends React.Component {
@@ -32,7 +33,7 @@ class Profile extends React.Component {
         { polls && <h3>You've created {polls.length} {pluralize('poll', polls.length)}</h3> }
         <div className="UserPolls">
           { polls ?
-            polls.map((poll, idx) =>(<div key={idx}>{poll.subject} - {poll.voteCount}</div>)) :
+            polls.map((poll, idx) =>(<UserPoll poll={poll} key={idx} />)) :
             'Loading...'
           }
         </div>

@@ -7,10 +7,6 @@ import moment from 'moment';
 import pluralize from 'pluralize';
 import './PollResults.css';
 
-// charts setup
-import chartjs from 'chart.js';
-window.Chart = chartjs;
-
 class PollResults extends React.Component {
   constructor(props) {
     super(props);

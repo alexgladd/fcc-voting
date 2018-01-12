@@ -15,6 +15,10 @@ import { loadAllVotes } from './actions/votes';
 
 import localstore from './util/localstore';
 
+// charts setup
+import chartjs from 'chart.js';
+window.Chart = chartjs;
+
 // setup redux
 const middleware = [ thunk ];
 const store = createStore(

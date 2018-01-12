@@ -1,0 +1,51 @@
+/*
+UserPoll component styles
+*/
+
+.UserPoll {
+  width: 100%;
+  color: #fff;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: min-content fit-content 1fr;
+  grid-template-areas:
+    "buttons summary results";
+}
+.UserPoll.Red {
+  background-color: #EF476F;
+  border-color: #EF476F;
+}
+.UserPoll.Yellow {
+  background-color: #FFD166;
+  border-color: #FFD166;
+}
+.UserPoll.Green {
+  background-color: #06D6A0;
+  border-color: #06D6A0;
+}
+
+.UserPoll .Summary {
+  grid-area: summary;
+}
+.UserPoll .Summary div {
+  margin-bottom: 0.5rem;
+}
+
+.UserPoll .Results {
+  grid-area: results;
+}
+
+.UserPoll .Buttons {
+  grid-area: buttons;
+}
+
+.UserPoll h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
