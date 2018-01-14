@@ -2,6 +2,7 @@ import React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faQuestionCircle, faPlus } from '@fortawesome/fontawesome-free-solid';
 import Button from '../components/Button';
+import { connect } from 'react-redux';
 import api from '../util/api';
 import './EditPoll.css';
 
@@ -22,6 +23,7 @@ class EditPoll extends React.Component {
     this.onOptionChange = this.onOptionChange.bind(this);
     this.onAddOption = this.onAddOption.bind(this);
     this.onSavePoll = this.onSavePoll.bind(this);
+    this.getValidOptions = this.getValidOptions.bind(this);
     this.validateInputs = this.validateInputs.bind(this);
   }
 
@@ -69,14 +71,42 @@ class EditPoll extends React.Component {
   }
 
   onSavePoll() {
+    const { editing, poll, subject } = this.state;
+    const { user, history } = this.props;
 
+    const options = this.getValidOptions();
+
+    if (editing) {
+      api.updatePoll(user, poll, { newOptions: options }).then(updatedPoll => {
+        history.push('/profile');
+      }).catch(err => {
+        console.error('Error updating poll', err);
+      });
+    } else {
+      api.createPoll(user, { subject, options }).then(newPoll => {
+        history.push(`/poll/${newPoll.id}`);
+      }).catch(err => {
+        console.error('Error creating poll', err);
+      });
+    }
+  }
+
+  getValidOptions() {
+    const { options } = this.state;
+
+    return options.reduce((acc, opt) => {
+      const option = opt.trim();
+      if (option) {
+        acc.push({ value: option });
+      }
+
+      return acc;
+    }, []);
   }
 
   validateInputs() {
-    const { editing, subject, options } = this.state;
-    const validOptions = options.reduce((acc, opt) => {
-      return (opt.trim()) ? acc + 1 : acc;
-    }, 0);
+    const { editing, subject } = this.state;
+    const validOptions = this.getValidOptions().length;
 
     if (editing) {
       // need at least one new option while editing
@@ -165,4 +195,8 @@ class EditPoll extends React.Component {
   }
 }
 
-export default EditPoll;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps, null)(EditPoll);

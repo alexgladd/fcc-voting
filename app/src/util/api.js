@@ -43,6 +43,26 @@ const getUserPolls = async (user) => {
   return await apiRequest(`/api/user/${user.id}/polls`, buildAuthInit(user.token));
 }
 
+// create a new poll
+const createPoll = async (user, poll) => {
+  const init = buildAuthInit(user.token, {
+    method: 'POST',
+    body: JSON.stringify(poll)
+  });
+
+  return await apiRequest(`/api/user/${user.id}/poll`, init);
+}
+
+// edit a poll
+const updatePoll = async (user, poll, options) => {
+  const init = buildAuthInit(user.token, {
+    method: 'PUT',
+    body: JSON.stringify(options)
+  });
+
+  return await apiRequest(`/api/user/${user.id}/poll/${poll.id}`, init);
+}
+
 // example api endpoints (remove)
 const getAuthenticatedExample = async (token) => {
   return await apiRequest('/api/example', buildAuthInit(token));
@@ -60,6 +80,8 @@ export default {
   getUserPolls,
   getPollDetails,
   voteOnPoll,
+  createPoll,
+  updatePoll,
   getAuthenticatedExample,
   getAuthorizedExample
 };
