@@ -3,5 +3,20 @@ EditPoll container styles
 */
 
 .EditPoll {
-  
+  color: #fff;
+  width: 100%;
+}
+.EditPoll h1 {
+  text-align: center;
+}
+
+.EditPoll .Form {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 60% 1fr;
+  grid-template-areas: "... fields ...";
+}
+
+.EditPoll .FormFields {
+  grid-area: fields;
 }
