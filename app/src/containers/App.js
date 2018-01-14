@@ -10,6 +10,7 @@ import Login from '../components/Login';
 import Profile from './Profile';
 import Poll from '../components/Poll';
 import PollResults from './PollResults';
+import EditPoll from './EditPoll';
 import './App.css';
 
 const FourOhFour = () => (
@@ -32,9 +33,14 @@ class App extends React.Component {
 
         <div className="AppContent">
         <Switch>
+          { /* home route */ }
           <Route exact path="/" component={Home} />
-          <Route path="/poll/:pollId/results" component={PollResults} />
-          <Route path="/poll/:pollId" component={Poll} />
+
+          { /* poll routes */ }
+          { user && <Route exact path="/poll/new" component={EditPoll} /> }
+          { user && <Route exact path="/poll/:pollId/edit" component={EditPoll} /> }
+          <Route exact path="/poll/:pollId/results" component={PollResults} />
+          <Route exact path="/poll/:pollId" component={Poll} />
 
           { /* login and oauth routes */ }
           <Route path="/login/:network?" component={Login} />

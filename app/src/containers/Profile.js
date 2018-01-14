@@ -25,6 +25,7 @@ class Profile extends React.Component {
   }
 
   render () {
+    const { history } = this.props;
     const { polls } = this.state;
 
     return (
@@ -33,7 +34,9 @@ class Profile extends React.Component {
         { polls && <h3>You've created {polls.length} {pluralize('poll', polls.length)}</h3> }
         <div className="UserPolls">
           { polls ?
-            polls.map((poll, idx) =>(<UserPoll poll={poll} key={idx} />)) :
+            polls.map((poll, idx) => (
+              <UserPoll poll={poll} onEdit={ () => history.push(`/poll/${poll.id}/edit`) } key={idx} />)
+            ) :
             'Loading...'
           }
         </div>

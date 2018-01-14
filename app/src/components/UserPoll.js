@@ -21,7 +21,7 @@ const chartOptions = {
   }
 };
 
-const UserPoll = ({ poll }) => {
+const UserPoll = ({ poll, onEdit }) => {
   const timeStr = moment(poll.createdAt).format('LLL');
   const timeAgo = moment(poll.createdAt).fromNow();
   const randBgIdx = Math.floor(Math.random() * pollBgs.length);
@@ -33,7 +33,7 @@ const UserPoll = ({ poll }) => {
   return (
     <div className={classes}>
       <div className="Buttons">
-        <Button onClick={() => {}}>
+        <Button onClick={onEdit}>
           <FontAwesomeIcon icon={faEdit} /> Edit
         </Button>
         <Button onClick={() => {}}>
@@ -53,7 +53,8 @@ const UserPoll = ({ poll }) => {
 }
 
 UserPoll.propTypes = {
-  poll: PropTypes.object.isRequired
+  poll: PropTypes.object.isRequired,
+  onEdit: PropTypes.func.isRequired
 };
 
 export default UserPoll;
