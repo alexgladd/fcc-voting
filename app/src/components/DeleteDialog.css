@@ -1,0 +1,28 @@
+/*
+DeleteDialog component styles
+*/
+
+.DeleteDialog {
+  width: 60vw;
+  display: grid;
+  color: #fff;
+  background-color: #3DA5D9;
+  margin: 15vh auto;
+  padding: 1rem;
+  border: 6px solid #eee;
+  border-radius: 6px;
+  grid-template-rows: auto auto auto;
+}
+
+.DeleteDialog h3 {
+  margin-top: 0;
+}
+
+.DeleteDialog .Buttons {
+  margin-top: 12px;
+  text-align: right;
+}
+
+.DeleteDialog .Button {
+  margin-left: 12px;
+}

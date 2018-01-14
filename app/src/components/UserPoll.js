@@ -21,11 +21,11 @@ const chartOptions = {
   }
 };
 
-const UserPoll = ({ poll, onEdit }) => {
+const UserPoll = ({ poll, pollIdx, onEdit, onDelete }) => {
   const timeStr = moment(poll.createdAt).format('LLL');
   const timeAgo = moment(poll.createdAt).fromNow();
-  const randBgIdx = Math.floor(Math.random() * pollBgs.length);
-  const classes = `UserPoll ${pollBgs[randBgIdx]}`;
+  const bgIdx = pollIdx % pollBgs.length;
+  const classes = `UserPoll ${pollBgs[bgIdx]}`;
   const chartData = poll.options.reduce((acc, opt) => {
     return { ...acc, [opt.value]: opt.votes };
   }, {});
@@ -36,7 +36,7 @@ const UserPoll = ({ poll, onEdit }) => {
         <Button onClick={onEdit}>
           <FontAwesomeIcon icon={faEdit} /> Edit
         </Button>
-        <Button onClick={() => {}}>
+        <Button onClick={onDelete}>
           <FontAwesomeIcon icon={faTrash} /> Delete
         </Button>
       </div>
@@ -54,7 +54,9 @@ const UserPoll = ({ poll, onEdit }) => {
 
 UserPoll.propTypes = {
   poll: PropTypes.object.isRequired,
-  onEdit: PropTypes.func.isRequired
+  pollIdx: PropTypes.number.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
 };
 
 export default UserPoll;

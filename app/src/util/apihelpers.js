@@ -29,7 +29,11 @@ export const apiRequest = async (path, init) => {
   try {
     const response = await fetch(path, init);
     if (response.ok) {
-      return await response.json();
+      if (response.status === 204) {
+        return {};
+      } else {
+        return await response.json();
+      }
     } else if (response.status >= 400 && response.status <= 500) {
       const error = await response.json();
       throw error;
