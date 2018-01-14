@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/fontawesome-free-solid';
 import Button from './Button';
 import './Header.css';
 
@@ -15,7 +17,12 @@ class Header extends React.Component {
         </div>
         <div className="Auth">
           { user && <Link to="/profile">{ user.name }</Link> }
-          { user && <Button type="Primary" onClick={onNewPoll}>New Poll</Button> }
+
+          { user &&
+            <Button type="Primary" onClick={onNewPoll}>
+              <FontAwesomeIcon icon={faPlus} /> New Poll
+            </Button> }
+
           { user ?
             <Button onClick={onLogout}>Logout</Button> :
             <Button onClick={onLogin}>Login</Button>
