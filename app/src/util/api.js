@@ -63,6 +63,15 @@ const updatePoll = async (user, poll, options) => {
   return await apiRequest(`/api/user/${user.id}/poll/${poll.id}`, init);
 }
 
+// delete a poll
+const deletePoll = async (user, poll) => {
+  const init = buildAuthInit(user.token, {
+    method: 'DELETE'
+  });
+
+  return await apiRequest(`/api/user/${user.id}/poll/${poll.id}`, init);
+}
+
 // example api endpoints (remove)
 const getAuthenticatedExample = async (token) => {
   return await apiRequest('/api/example', buildAuthInit(token));
@@ -82,6 +91,7 @@ export default {
   voteOnPoll,
   createPoll,
   updatePoll,
+  deletePoll,
   getAuthenticatedExample,
   getAuthorizedExample
 };
