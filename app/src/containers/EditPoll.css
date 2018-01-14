@@ -13,10 +13,71 @@ EditPoll container styles
 .EditPoll .Form {
   display: grid;
   width: 100%;
+  grid-template-rows: auto auto;
   grid-template-columns: 1fr 60% 1fr;
-  grid-template-areas: "... fields ...";
+  grid-template-areas:
+    "... fields ..."
+    "... buttons ...";
 }
 
 .EditPoll .FormFields {
   grid-area: fields;
+}
+
+.EditPoll .FormFields .Subject {
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.EditPoll .FormFields .Subject label {
+  float: left;
+  margin-right: 0.5rem;
+}
+.EditPoll .FormFields .Subject span {
+  display: block;
+  overflow: hidden;
+}
+.EditPoll .FormFields .Subject input {
+  width: 100%;
+  font-size: 1.5rem;
+  color: #fff;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0.25rem;
+  border-bottom: 2px solid #fff;
+}
+.EditPoll .FormFields .Subject input::placeholder {
+  color: #ddd;
+}
+
+.EditPoll .FormFields .Options li {
+  font-size: 1.25rem;
+  padding: 6px;
+}
+
+.EditPoll .FormFields .Options input {
+  width: 100%;
+  font-size: 1.25rem;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid #fff;
+  border-radius: 6px;
+  outline: none;
+  padding: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+.EditPoll .FormFields .Options input::placeholder {
+  color: #ddd;
+}
+
+.EditPoll .Buttons {
+  grid-area: buttons;
+  text-align: center;
+}
+.EditPoll .Buttons .Button {
+  margin-bottom: 12px;
+}
+.EditPoll .Buttons .Button.Primary {
+  width: 80%;
 }
