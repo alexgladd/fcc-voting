@@ -14,7 +14,7 @@ import EditPoll from './EditPoll';
 import './App.css';
 
 const FourOhFour = () => (
-  <div>
+  <div style={{ color: '#fff' }}>
     <h2>Whoops...</h2>
     <p>Looks like you're lost! Click <Link to="/">here</Link> to go home.</p>
   </div>
@@ -38,9 +38,9 @@ class App extends React.Component {
 
           { /* poll routes */ }
           { user && <Route exact path="/poll/new" component={EditPoll} /> }
-          { user && <Route exact path="/poll/:pollId/edit" component={EditPoll} /> }
+          { user && <Route exact path="/poll/:pollId([0-9a-f]+)/edit" component={EditPoll} /> }
           <Route exact path="/poll/:pollId/results" component={PollResults} />
-          <Route exact path="/poll/:pollId" component={Poll} />
+          <Route exact path="/poll/:pollId([0-9a-f]+)" component={Poll} />
 
           { /* login and oauth routes */ }
           <Route path="/login/:network?" component={Login} />
