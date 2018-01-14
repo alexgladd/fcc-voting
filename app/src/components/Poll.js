@@ -82,8 +82,9 @@ class Poll extends React.Component {
             }
           </ul>
           <div className="Btn">
-            <Button text="Vote" type="Primary" onClick={this.handleVote}
-              disabled={selectedOption === null} />
+            <Button type="Primary" onClick={this.handleVote} disabled={selectedOption === null}>
+              Vote
+            </Button>
           </div>
         </div>
       );

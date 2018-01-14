@@ -33,17 +33,16 @@ const UserPoll = ({ poll }) => {
   return (
     <div className={classes}>
       <div className="Buttons">
-        { /* TODO update Button component to accept children instead of text */ }
-        <Button text="E" onClick={() => {}}>
-          <FontAwesomeIcon icon={faEdit} />
+        <Button onClick={() => {}}>
+          <FontAwesomeIcon icon={faEdit} /> Edit
         </Button>
-        <Button text="D" onClick={() => {}}>
-          <FontAwesomeIcon icon={faTrash} />
+        <Button onClick={() => {}}>
+          <FontAwesomeIcon icon={faTrash} /> Delete
         </Button>
       </div>
       <div className="Summary">
         <h3><FontAwesomeIcon icon={faQuestionCircle} /> { poll.subject }</h3>
-        <div><FontAwesomeIcon icon={faClock} /> Started { timeAgo }</div>
+        <div title={timeStr}><FontAwesomeIcon icon={faClock} /> Started { timeAgo }</div>
         <div><FontAwesomeIcon icon={faCheckSquare} /> { poll.voteCount } total { pluralize('vote', poll.voteCount) }</div>
       </div>
       <div className="Results">

@@ -12,10 +12,11 @@ UserPoll component styles
   padding: 1rem;
   box-sizing: border-box;
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: min-content fit-content 1fr;
+  grid-template-rows: auto 36px;
+  grid-template-columns: 40% 60%;
   grid-template-areas:
-    "buttons summary results";
+    "summary results"
+    "buttons results";
 }
 .UserPoll.Red {
   background-color: #EF476F;
@@ -43,6 +44,9 @@ UserPoll component styles
 
 .UserPoll .Buttons {
   grid-area: buttons;
+}
+.UserPoll .Buttons .Button {
+  margin-right: 6px;
 }
 
 .UserPoll h3 {

@@ -15,10 +15,10 @@ class Header extends React.Component {
         </div>
         <div className="Auth">
           { user && <Link to="/profile">{ user.name }</Link> }
-          { user && <Button text="New Poll" type="Primary" onClick={onNewPoll} /> }
+          { user && <Button type="Primary" onClick={onNewPoll}>New Poll</Button> }
           { user ?
-            <Button text="Logout" onClick={onLogout} /> :
-            <Button text="Login" onClick={onLogin} />
+            <Button onClick={onLogout}>Logout</Button> :
+            <Button onClick={onLogin}>Login</Button>
           }
         </div>
       </header>
