@@ -4,6 +4,7 @@ Button component sytles
 
 .Button {
   color: #fff;
+  font-family: 'Patua One', cursive;
   font-size: 1.25rem;
   padding: 0.25rem 0.5rem;
   border: 2px solid #eee;
