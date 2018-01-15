@@ -45,7 +45,8 @@ UserPoll component styles
 .UserPoll .Buttons {
   grid-area: buttons;
 }
-.UserPoll .Buttons .Button {
+
+.UserPoll .Button {
   margin-right: 6px;
 }
 

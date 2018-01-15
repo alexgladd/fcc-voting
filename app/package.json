@@ -10,6 +10,7 @@
     "@fortawesome/react-fontawesome": "^0.0.16",
     "chart.js": "^2.7.1",
     "chartkick": "^2.2.4",
+    "clipboard-polyfill": "^2.4.1",
     "moment": "^2.20.1",
     "pluralize": "^7.0.0",
     "prop-types": "^15.6.0",

@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {
-  faQuestionCircle, faCheckSquare, faClock, faEdit, faTrash
+  faQuestionCircle, faCheckSquare, faClock, faEdit, faTrash, faLink
 } from '@fortawesome/fontawesome-free-solid';
+import { faTwitter } from '@fortawesome/fontawesome-free-brands';
 import { PieChart } from 'react-chartkick';
 import Button from './Button';
 import moment from 'moment';
 import pluralize from 'pluralize';
+import clipboard from 'clipboard-polyfill';
 import './UserPoll.css';
 
 const pollBgs = [ 'Red', 'Yellow', 'Green' ];
@@ -30,6 +32,18 @@ const UserPoll = ({ poll, pollIdx, onEdit, onDelete }) => {
     return { ...acc, [opt.value]: opt.votes };
   }, {});
 
+  const pollUrl = `${window.location.origin}/poll/${poll.id}`;
+  const onLinkClick = () => {
+    clipboard.writeText(pollUrl);
+  }
+  const onTwitterClick = () => {
+    const txt = `Vote on my poll on Pollster: ${poll.subject}`;
+    const tags = 'poll,Pollster';
+    const url = `https://twitter.com/intent/tweet?text=${txt}&url=${pollUrl}&hashtags=${tags}`;
+
+    window.open(encodeURI(url), 'Pollster_Twitter');
+  }
+
   return (
     <div className={classes}>
       <div className="Buttons">
@@ -44,6 +58,14 @@ const UserPoll = ({ poll, pollIdx, onEdit, onDelete }) => {
         <h3><FontAwesomeIcon icon={faQuestionCircle} /> { poll.subject }</h3>
         <div title={timeStr}><FontAwesomeIcon icon={faClock} /> Started { timeAgo }</div>
         <div><FontAwesomeIcon icon={faCheckSquare} /> { poll.voteCount } total { pluralize('vote', poll.voteCount) }</div>
+        <div>
+          <Button onClick={onLinkClick} tooltip="Copy poll link to clipboard">
+            <FontAwesomeIcon icon={faLink} fixedWidth />
+          </Button>
+          <Button onClick={onTwitterClick} tooltip="Share poll on Twitter">
+            <FontAwesomeIcon icon={faTwitter} fixedWidth />
+          </Button>
+        </div>
       </div>
       <div className="Results">
         <PieChart data={chartData} library={chartOptions} width="100%" />
