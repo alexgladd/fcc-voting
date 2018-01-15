@@ -9,7 +9,7 @@ const clients = {
 
 // oauth client IDs
 const clientIds = {
-  github: (build.prod ? '5eb101fbdbdd9ce15d8f' : '8959958c36292d0b35d6')
+  github: (build.prod ? '1719f27ed45999605546' : '8959958c36292d0b35d6')
 };
 
 // oauth URLs
@@ -18,7 +18,7 @@ const oauthBaseUrls = {
 };
 
 // oauth redirect URL
-const redirectBase = (build.prod ? 'https://mern-app-starter.herokuapp.com' : 'http://localhost:3000');
+const redirectBase = (build.prod ? 'https://agladd-pollster.herokuapp.com' : 'http://localhost:3000');
 const oauthRedirectUrl = (network) => (`${redirectBase}/login/${network}`);
 
 // generate an oauth URL for the given network
